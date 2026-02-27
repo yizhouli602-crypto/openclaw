@@ -1,0 +1,4 @@
+{
+    "start_command": "OPENCLAW_GATEWAY_CONTROL_UI_DANGEROUSLY_ALLOW_HOST_HEADER_ORIGIN_FALLBACK=true node openclaw.mjs gateway --allow-unconfigured --port ${PORT:-8080} --bind lan",
+    "port": 8080
+}
