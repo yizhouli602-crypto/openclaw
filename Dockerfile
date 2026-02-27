@@ -60,8 +60,11 @@ USER node
 
 # Start gateway server with default config.
 # Binds to loopback (127.0.0.1) by default for security.
-#
+# Add Zeabur UI config bypass
+COPY --chown=node:node openclaw.json /home/node/openclaw.json
+ENV OPENCLAW_CONFIG_PATH=/home/node/openclaw.json
+
 # For container platforms requiring external health checks:
 #   1. Set OPENCLAW_GATEWAY_TOKEN or OPENCLAW_GATEWAY_PASSWORD env var
 #   2. Override CMD: ["node","openclaw.mjs","gateway","--allow-unconfigured","--bind","lan"]
-CMD ["sh", "-c", "OPENCLAW_GATEWAY_CONTROL_UI_DANGEROUSLY_ALLOW_HOST_HEADER_ORIGIN_FALLBACK=true node openclaw.mjs gateway --allow-unconfigured --port ${PORT:-8080} --bind lan"]
+CMD ["sh", "-c", "node openclaw.mjs gateway --allow-unconfigured --port ${PORT:-8080} --bind lan"]
